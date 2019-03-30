@@ -89,6 +89,35 @@ class BuildingService extends BaseService {
 
     return result;
   }
+
+  /**
+   * @description 查询小区下的所有楼栋数据
+   * @param {String} id 小区id
+   */
+  async queryByDistrictId(id) {
+    const { app } = this;
+    let result = null;
+    let sql =
+      "select id,no from building where districtId=? and state=1 order by modifyTime desc;";
+
+    try {
+      let data = await app.mysql.query(sql, [id]);
+      result = {
+        data,
+        code: 0,
+        info: "success"
+      };
+    } catch (error) {
+      console.log(error);
+      result = {
+        error,
+        code: 1,
+        info: "failure"
+      };
+    }
+
+    return result;
+  }
 }
 
 module.exports = BuildingService;

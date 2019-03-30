@@ -28,6 +28,12 @@ class BuildingController extends Controller {
     const { id } = ctx.params;
     ctx.body = await service.building.queryById(id);
   }
+  async queryByDistrictId() {
+    const { ctx, service } = this;
+    const { id } = ctx.params;
+    let result = await service.building.queryByDistrictId(id);
+    ctx.body = result;
+  }
   async list() {
     const { ctx, service } = this;
     let r = await service.building.list();

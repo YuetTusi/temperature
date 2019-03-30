@@ -23,6 +23,7 @@ module.exports = app => {
   //楼宇
   router.get("/building", controller.building.list);
   router.get("/building/:id", controller.building.queryById);
+  router.get("/building/:id/district", controller.building.queryByDistrictId); //查询小区下的楼栋
   router.post("/building/:pageSize/:pageIndex", controller.building.query);
   router.post("/building", controller.building.create);
   router.put("/building", controller.building.update);
