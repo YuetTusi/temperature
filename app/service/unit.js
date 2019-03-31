@@ -97,7 +97,7 @@ class UnitService extends BaseService {
       let data = await app.mysql.query(sql, [id]);
       result = {
         code: 0,
-        data,
+        data: data[0],
         info: "success"
       };
     } catch (error) {
