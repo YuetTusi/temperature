@@ -82,6 +82,32 @@ class DistrictService extends BaseService {
     }
     return result;
   }
+  /**
+   * @description 查询小区下的楼栋数量
+   * @param {String} id 小区id
+   */
+  async queryBuildingCount(id) {
+    const sql = `select count(*) as 'BuildingCount' 
+      from building  
+      where districtId=?;`;
+    const { app } = this;
+    let result = null;
+    try {
+      let data = await app.mysql.query(sql, [id]);
+      result = {
+        code: 0,
+        data: data[0].BuildingCount,
+        info: "success"
+      };
+    } catch (error) {
+      result = {
+        code: 1,
+        error,
+        info: "failure"
+      };
+    }
+    return result;
+  }
 }
 
 module.exports = DistrictService;

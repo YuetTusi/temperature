@@ -14,6 +14,7 @@ module.exports = app => {
   router.delete("/users/:id", controller.users.del);
   //小区
   router.get("/district/name", controller.district.queryDistrictName);
+  router.get("/district/:id/building", controller.district.queryBuildingCount); //查小区下的楼栋数量(删除前判断用)
   router.get("/district/:id", controller.district.get);
   router.get("/district", controller.district.list);
   router.post("/district/:pageSize/:pageIndex", controller.district.query);

@@ -26,6 +26,12 @@ class DistrictController extends Controller {
     let r = await service.district.queryDistrictSelect(keywords);
     ctx.body = r;
   }
+  async queryBuildingCount() {
+    const { ctx, service } = this;
+    const { id } = ctx.params;
+    let r = await service.district.queryBuildingCount(id);
+    ctx.body = r;
+  }
   async list() {
     const { ctx, service } = this;
     let r = await service.district.list();
