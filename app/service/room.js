@@ -31,6 +31,42 @@ class RoomService extends BaseService {
     }
     return result;
   }
+  /**
+   * @description 按id查询详情
+   * @param {String} id 主键
+   */
+  async queryById(id) {
+    let result = null;
+    const sql = `select r.id,r.no,r.createTime,r.modifyTime,r.state,
+     d.name as 'districtName',b.no as 'buildingNo',
+       u.name as 'unitName'
+      from room r 
+      inner join unit u 
+      on r.unitId=u.id
+      inner join building b
+      on u.buildingId=b.id
+      inner join district d
+      on b.districtId=d.id
+      where r.id=?
+      order by r.modifyTime desc;`;
+    const { app } = this;
+    try {
+      let data = await app.mysql.query(sql, [id]);
+      result = {
+        code: 0,
+        data,
+        info: "success"
+      };
+    } catch (error) {
+      result = {
+        code: 1,
+        error,
+        info: "failure"
+      };
+    }
+
+    return result;
+  }
 }
 
 function preQuerySql(parameters) {

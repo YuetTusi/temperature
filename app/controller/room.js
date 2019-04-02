@@ -19,6 +19,12 @@ class RoomController extends Controller {
     let result = await service.room.query(condition);
     ctx.body = result;
   }
+  async queryById() {
+    const { ctx, service } = this;
+    let { id } = ctx.params;
+    let result = await service.room.queryById(id);
+    ctx.body = result;
+  }
   async create() {
     const { ctx, service } = this;
     let r = await service.room.create(ctx.request.body);

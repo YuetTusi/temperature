@@ -39,6 +39,7 @@ module.exports = app => {
   router.delete("/unit/:id", controller.unit.del);
   //房间
   router.get("/room", controller.room.list);
+  router.get("/room/:id", controller.room.queryById);
   router.post("/room/:pageSize/:pageIndex", controller.room.query); //分页查询
   router.post("/room", controller.room.create);
   router.put("/room", controller.room.update);
