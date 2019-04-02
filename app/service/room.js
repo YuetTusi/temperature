@@ -38,8 +38,8 @@ class RoomService extends BaseService {
   async queryById(id) {
     let result = null;
     const sql = `select r.id,r.no,r.createTime,r.modifyTime,r.state,
-     d.name as 'districtName',b.no as 'buildingNo',
-       u.name as 'unitName'
+     d.name as 'districtName',d.id as 'districtId',b.id as 'buildingId',b.no as 'buildingNo',
+      u.id as 'unitId', u.name as 'unitName'
       from room r 
       inner join unit u 
       on r.unitId=u.id
@@ -107,8 +107,6 @@ function preQuerySql(parameters) {
     parameters.pageSize,
     (parameters.pageIndex - 1) * parameters.pageSize
   );
-  console.log(sql);
-  console.log(sqlWhere);
   return app.mysql.query(sql, sqlWhere);
 }
 
