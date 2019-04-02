@@ -31,6 +31,7 @@ module.exports = app => {
   router.delete("/building/:id", controller.building.del);
   //单元
   router.get("/unit", controller.unit.list);
+  router.get("/unit/:id/building", controller.unit.queryByBuilding); //查询楼栋下的单元
   router.get("/unit/:id", controller.unit.queryById);
   router.post("/unit/:pageSize/:pageIndex", controller.unit.query);
   router.post("/unit", controller.unit.create);
@@ -38,6 +39,7 @@ module.exports = app => {
   router.delete("/unit/:id", controller.unit.del);
   //房间
   router.get("/room", controller.room.list);
+  router.post("/room/:pageSize/:pageIndex", controller.room.query); //分页查询
   router.post("/room", controller.room.create);
   router.put("/room", controller.room.update);
   router.delete("/room/:id", controller.room.del);

@@ -26,6 +26,12 @@ class UnitController extends Controller {
     let result = await service.unit.queryById(id);
     ctx.body = result;
   }
+  async queryByBuilding() {
+    const { ctx, service } = this;
+    let { id } = ctx.params;
+    let result = await service.unit.queryByBuilding(id);
+    ctx.body = result;
+  }
   async create() {
     const { ctx, service } = this;
     let r = await service.unit.create(ctx.request.body);

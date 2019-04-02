@@ -109,6 +109,31 @@ class UnitService extends BaseService {
     }
     return result;
   }
+
+  /**
+   * @description 查询楼栋下的单元
+   * @param {String} id 楼栋id
+   */
+  async queryByBuilding(id) {
+    const sql = `select id,name from unit where buildingId=?`;
+    const { app } = this;
+    let result = null;
+    try {
+      let data = await app.mysql.query(sql, [id]);
+      result = {
+        code: 0,
+        data,
+        info: "success"
+      };
+    } catch (error) {
+      result = {
+        code: 1,
+        error,
+        info: "failure"
+      };
+    }
+    return result;
+  }
 }
 
 module.exports = UnitService;
