@@ -40,6 +40,7 @@ module.exports = app => {
   //房间
   router.get("/room", controller.room.list);
   router.get("/room/:id", controller.room.queryById);
+  router.get("/room/:id/unit", controller.room.queryByUnit);
   router.post("/room/:pageSize/:pageIndex", controller.room.query); //分页查询
   router.post("/room", controller.room.create);
   router.put("/room", controller.room.update);
@@ -47,6 +48,7 @@ module.exports = app => {
   //气温
   router.get("/temp", controller.temp.list);
   router.post("/temp", controller.temp.create);
+  router.post("/temp/:room", controller.temp.chart); //曲线数据
   router.put("/temp", controller.temp.update);
   router.delete("/temp/:id", controller.temp.del);
 };

@@ -27,6 +27,16 @@ class TempController extends Controller {
     let r = await service.temp.del(ctx.params.id);
     ctx.body = r;
   }
+  async chart() {
+    const { ctx, service } = this;
+    let parameters = ctx.request.body;
+    let roomNo = ctx.params.room;
+    let data = await service.temp.chartData({
+      roomNo,
+      ...parameters
+    });
+    ctx.body = data;
+  }
 }
 
 module.exports = TempController;

@@ -67,6 +67,26 @@ class RoomService extends BaseService {
 
     return result;
   }
+  async queryByUnit(id) {
+    const sql = `select * from room where unitId=?`;
+    const { app } = this;
+    let result = null;
+    try {
+      let data = await app.mysql.query(sql, [id]);
+      result = {
+        code: 0,
+        data,
+        info: "success"
+      };
+    } catch (error) {
+      result = {
+        code: 1,
+        info: "failure"
+      };
+    }
+
+    return result;
+  }
 }
 
 function preQuerySql(parameters) {
