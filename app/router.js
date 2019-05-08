@@ -10,6 +10,7 @@ module.exports = app => {
   //用户
   router.get("/users", controller.users.list);
   router.post("/users", controller.users.create);
+  router.post("/users/login", controller.users.login);
   router.put("/users", controller.users.update);
   router.delete("/users/:id", controller.users.del);
   //小区

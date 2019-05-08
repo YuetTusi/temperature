@@ -15,6 +15,8 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + "_1552292916892_926";
 
+  config.JWT_KEY = "yuet_temperature"; // JWT 所需密钥
+
   // add your middleware config here
   config.middleware = [];
 

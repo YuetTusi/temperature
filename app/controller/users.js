@@ -1,4 +1,5 @@
 const Controller = require("egg").Controller;
+const jwt = require("jsonwebtoken"); //JWT
 
 /**
  * @description 用户
@@ -30,6 +31,12 @@ class UserController extends Controller {
     const { id } = ctx.params;
     let r = await service.users.del(id);
     ctx.body = r;
+  }
+  async login() {
+    const { ctx, service } = this;
+    const { name, password } = ctx.request.body;
+    let result = await service.users.login(name, password);
+    ctx.body = result;
   }
 }
 
