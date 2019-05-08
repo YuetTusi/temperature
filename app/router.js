@@ -5,12 +5,16 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+
+  const auth = app.middleware.auth({}, app); //取得中间件
+
   router.get("/", controller.home.index);
 
   //用户
   router.get("/users", controller.users.list);
   router.post("/users", controller.users.create);
-  router.post("/users/login", controller.users.login);
+  router.post("/users/login", controller.users.login); //登录
+  router.post("/users/register", controller.users.register); //注册
   router.put("/users", controller.users.update);
   router.delete("/users/:id", controller.users.del);
   //小区

@@ -38,6 +38,10 @@ class UserController extends Controller {
     let result = await service.users.login(name, password);
     ctx.body = result;
   }
+  async register() {
+    const { ctx, serivce } = this;
+    ctx.body = "用户注册";
+  }
 }
 
 module.exports = UserController;

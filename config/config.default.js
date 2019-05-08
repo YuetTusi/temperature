@@ -17,8 +17,12 @@ module.exports = appInfo => {
 
   config.JWT_KEY = "yuet_temperature"; // JWT 所需密钥
 
-  // add your middleware config here
-  config.middleware = [];
+  // 在这里配置中间件
+  config.middleware = ["auth"];
+  config.auth = {
+    enable: false, //开启此中间件
+    ignore: /.*\/users\/(login|register)*/ //除“登录”与“注册”之外都进行登录验证
+  };
 
   config.mysql = {
     // database configuration
